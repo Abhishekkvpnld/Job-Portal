@@ -5,9 +5,15 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dbConnection from "./utils/dbConnection.js";
 
+//Routes
+import userRoute from "./routes/userRoute.js";
+
+
+
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +30,8 @@ app.get("/", (req, res) => {
   res.send("Server running...");
 });
 
-const PORT = process.env.PORT;
+app.use("/api/v1/user",userRoute);
+
 
 dbConnection().then(() => {
   app.listen(PORT, () => {

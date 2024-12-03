@@ -43,19 +43,20 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
     if (!email || !password) {
       throw new Error("Please Provide All Details...❌");
     }
 
-    const user = await User.findOne({ email });
-    if (user) {
-      throw new Error("Incorrect email or password...❌");
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      throw new Error("User not found with this email...❌");
     }
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (isPasswordMatch) {
+    if (!isPasswordMatch) {
       throw new Error("Incorrect email or password...❌");
     }
 
@@ -103,34 +104,17 @@ export const login = async (req, res) => {
   }
 };
 
-export const logout = async (req, res) => {
-  try {
-    return res.status(200).cookie("token", "", { maxAge: 0 }).json({
-      success: true,
-      error: false,
-      message: "User logged out successfully...✅",
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      success: false,
-      error: true,
-      message: error.message,
-    });
-  }
-};
-
 export const updateProfile = async (req, res) => {
   try {
     const { fullname, email, phone, bio, skills } = req.body;
     const file = req.file;
 
-    if (!fullname || !email || !phone || !bio || !skills) {
-      throw new Error("Something is missing...❌");
-    }
-
     const userId = req.id;
-    const skillsArray = skills.split(",");
+
+    let skillsArray;
+    if (skills) {
+      skillsArray = skills.split(",");
+    }
 
     let user = await User.findById(userId);
     if (!user) {
@@ -138,11 +122,11 @@ export const updateProfile = async (req, res) => {
     }
 
     //Updating data
-    user.fullname = fullname;
-    user.email = email;
-    user.phone = phone;
-    user.profile.bio = bio;
-    user.profile.skills = skillsArray;
+    if (fullname) user.fullname = fullname;
+    if (email) user.email = email;
+    if (phone) user.phone = phone;
+    if (bio) user.profile.bio = bio;
+    if (skills) user.profile.skills = skillsArray;
 
     await user.save();
 
@@ -160,6 +144,23 @@ export const updateProfile = async (req, res) => {
       error: false,
       message: "Profile Updated Successfully...✅",
       data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const logout = async (req, res) => {
+  try {
+    return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+      success: true,
+      error: false,
+      message: "User logged out successfully...✅",
     });
   } catch (error) {
     console.log(error);
