@@ -7,7 +7,8 @@ import dbConnection from "./utils/dbConnection.js";
 
 //Routes
 import userRoute from "./routes/userRoute.js";
-
+import companyRoute from "./routes/companyRoute.js";
+import jobRoute from "./routes/jobRoute.js"
 
 
 dotenv.config();
@@ -31,6 +32,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/user",userRoute);
+app.use("/api/v1/company",companyRoute);
+app.use("/api/v1/job",jobRoute);
 
 
 dbConnection().then(() => {
