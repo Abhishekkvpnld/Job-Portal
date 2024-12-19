@@ -131,7 +131,7 @@ export const updateStatus = async (req, res) => {
       throw new Error("Application not found...");
     }
 
-    application.status = status.toLowercase();
+    application.status = status.toLowerCase();
     await application.save();
 
     return res.status(200).json({
