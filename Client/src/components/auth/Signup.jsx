@@ -3,11 +3,16 @@ import Navbar from "../shared/Navbar";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+import { USER_API_END_POINT } from "@/utils/constants";
+import { toast } from "sonner";
 
 
 const Signup = () => {
+
+    const navigate = useNavigate();
 
     const [input, setInput] = useState({
         fullName: "",
@@ -25,9 +30,34 @@ const Signup = () => {
         setInput({ ...input, file: e.target.files[0] })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(input)
+
+        const formData = new FormData();
+        formData.append("fullName", input.fullName);
+        formData.append("email", input.email)
+        formData.append("phoneNumber", input.phoneNumber)
+        formData.append("role", input.role)
+        formData.append("password", input.password)
+
+        if (input.file) {
+            formData.append("file", input.file)
+        }
+
+        try {
+            const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+                withCredentials: true
+            });
+
+            if (res?.data?.success) {
+                navigate("/login")
+                toast.success(res?.data?.message);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error?.response?.data?.message);
+        }
     }
 
     return (
@@ -70,7 +100,7 @@ const Signup = () => {
 
                         <div className="flex items-center gap-1">
                             <Label>Profile</Label>
-                            <input onChange={fileHandler} type="file" name="file" accept="image/*" className="cursor-pointer text-xs border" />
+                            <input onChange={fileHandler} type="file" accept="image/*" className="cursor-pointer text-xs border" />
                         </div>
 
                     </div>

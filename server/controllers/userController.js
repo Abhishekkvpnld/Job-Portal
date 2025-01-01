@@ -4,8 +4,9 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
-    const { fullname, email, password, phone, role } = req.body;
-    if (!fullname || !email || !password || !phone || !role) {
+    const { fullName, email, password, phoneNumber, role } = req.body;
+
+    if (!fullName || !email || !password || !phoneNumber || !role) {
       throw new Error("Provide all details...❌");
     }
 
@@ -17,10 +18,10 @@ export const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({
-      fullname,
+      fullname:fullName,
       email,
       password: hashedPassword,
-      phone,
+      phone:phoneNumber,
       role,
     });
 
@@ -49,7 +50,7 @@ export const login = async (req, res) => {
       throw new Error("Please Provide All Details...❌");
     }
 
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email:{ $regex: new RegExp(`^${email}$`, 'i') } });
 
     if (!user) {
       throw new Error("User not found with this email...❌");
@@ -172,16 +173,3 @@ export const logout = async (req, res) => {
   }
 };
 
-
-
-//   export const login = async (req, res) => {
-//     try {
-//     } catch (error) {
-//       console.log(error);
-//       res.status(500).json({
-//         success: false,
-//         error: true,
-//         message: error.message,
-//       });
-//     }
-//   };
