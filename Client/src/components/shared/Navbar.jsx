@@ -21,15 +21,15 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-11">
                     <ul className="flex items-center text-sm gap-5 font-medium">
-                        <li className="hover:underline cursor-pointer">Home</li>
+                        <Link to={"/"}> <li className="hover:underline cursor-pointer">Home</li></Link>
                         <li className="hover:underline cursor-pointer">Jobs</li>
                         <li className="hover:underline cursor-pointer">Browse</li>
                     </ul>
 
                     {
-                       !user ? (<div className="flex items-center justify-center gap-2">
-                           <Link to={"/login"}> <Button variant="outline">Login</Button></Link>
-                           <Link to={"/signup"}> <Button var>Signup</Button></Link>
+                        !user ? (<div className="flex items-center justify-center gap-2">
+                            <Link to={"/login"}> <Button variant="outline">Login</Button></Link>
+                            <Link to={"/signup"}> <Button var>Signup</Button></Link>
                         </div>) : (
                             <Popover>
                                 <PopoverTrigger>
