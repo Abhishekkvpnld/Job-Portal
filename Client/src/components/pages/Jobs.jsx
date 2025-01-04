@@ -11,7 +11,7 @@ const Jobs = () => {
       <Navbar />
       <div className="max-w-7xl mx-auto mt-2 p-3">
         <div className="flex gap-5">
-          <div className="w-[15%]">
+          <div className="w-[17%]">
             <FilterCard />
           </div>
 
@@ -20,7 +20,7 @@ const Jobs = () => {
               <div className="flex-1 h-88vh overflow-y-auto pb-5">
                 <div className="grid grid-cols-3 gap-4">
                   {
-                    jobsArr.map((itm, index) => (
+                    jobsArr.map((item, index) => (
                       <div key={index}>
                         <Job />
                       </div>
