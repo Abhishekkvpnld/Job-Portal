@@ -16,14 +16,14 @@ const Navbar = () => {
 
             <div className="flex items-center justify-between px-10 py-1">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-500">Find<span className="text-red-800">Job</span></h1>
+                    <Link to={"/"}><h1 className="text-2xl font-bold rounded-lg cursor-pointer  text-orange-600">Find<span className="text-black">IT</span></h1></Link>
                 </div>
 
                 <div className="flex items-center gap-11">
                     <ul className="flex items-center text-sm gap-5 font-medium">
                         <Link to={"/"}> <li className="hover:underline cursor-pointer">Home</li></Link>
-                        <li className="hover:underline cursor-pointer">Jobs</li>
-                        <li className="hover:underline cursor-pointer">Browse</li>
+                        <Link to={"/jobs"}> <li className="hover:underline cursor-pointer">Jobs</li></Link>
+                        <Link to={"/browse"}><li className="hover:underline cursor-pointer">Browse</li></Link>
                     </ul>
 
                     {
