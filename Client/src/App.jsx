@@ -3,6 +3,7 @@ import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Home from './components/pages/Home';
 import Jobs from './components/pages/Jobs';
+import Browse from './components/pages/Browse';
 
 
 const App = () => {
@@ -24,6 +25,10 @@ const App = () => {
     {
       path:"/jobs",
       element:<Jobs/>
+    },
+    {
+      path:"/browse",
+      element:<Browse/>
     }
   ])
 
