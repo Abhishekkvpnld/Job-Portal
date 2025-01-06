@@ -9,7 +9,7 @@ import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constants";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from "@/redux/authSlice";
+import { setAuthUser, setLoading } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
 
 
@@ -42,6 +42,7 @@ const Login = () => {
             });
 
             if (res?.data?.success) {
+                dispatch(setAuthUser(res?.data?.data))
                 navigate("/")
                 toast.success(res?.data?.message);
             }
@@ -75,11 +76,11 @@ const Login = () => {
                     <div className="flex items-center justify-between w-full">
                         <RadioGroup className="flex items-center gap-4 my-4">
                             <div className="flex items-center space-x-2">
-                                <input checked={input.role === "student"} onChange={onChangeValueController} type="radio" name="role" value={"student"} className="cursor-pointer" />
+                                <input checked={input.role === "student"} onChange={onChangeValueController} type="radio" name="role" id="r1" value={"student"} className="cursor-pointer" />
                                 <Label htmlFor="r1">Student</Label>
                             </div>
                             <div className="flex items-center space-x-2">
-                                <input checked={input.role === "recruiter"} onChange={onChangeValueController} type="radio" name="role" value={"recruiter"} className="cursor-pointer" />
+                                <input checked={input.role === "recruiter"} onChange={onChangeValueController} type="radio" name="role" id="r2" value={"recruiter"} className="cursor-pointer" />
                                 <Label htmlFor="r2">Recruiter</Label>
                             </div>
                         </RadioGroup>

@@ -4,6 +4,7 @@ import Login from './components/auth/Login';
 import Home from './components/pages/Home';
 import Jobs from './components/pages/Jobs';
 import Browse from './components/pages/Browse';
+import Profile from './components/shared/Profile';
 
 
 const App = () => {
@@ -29,6 +30,10 @@ const App = () => {
     {
       path:"/browse",
       element:<Browse/>
+    },
+    {
+      path:"/profile",
+      element:<Profile/>
     }
   ])
 

@@ -3,13 +3,13 @@ import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
 const Navbar = () => {
 
-
-    const user = false
+    const { user } = useSelector(store => store.auth)
 
     return (
         <div className="bg-white">
@@ -51,7 +51,7 @@ const Navbar = () => {
                                     <div className="flex items-center gap-2 justify-between">
                                         <div className="flex items-center gap-1">
                                             <User2 size={18} className="text-slate-600" />
-                                            <Button className="mt-2" variant="outline">View Profile</Button>
+                                            <Button className="mt-2" variant="outline"><Link to={"/profile"}>View Profile</Link></Button>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <LogOut size={18} className="text-slate-600" />
