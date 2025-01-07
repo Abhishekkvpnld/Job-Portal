@@ -5,11 +5,16 @@ import { Avatar, AvatarImage } from "../ui/avatar"
 import { Badge } from "../ui/badge"
 import { Label } from "../ui/label"
 import AppliedJobTable from "./AppliedJobTable"
+import { useState } from "react"
+import UpdateProfileBox from "./UpdateProfileBox"
 
 const skills = ["CSS", 'HTML', "JavaScript", 'NodeJs', "ExpresJs"];
 const isResume = true;
 
 const Profile = () => {
+
+    const [open, setOpen] = useState(false);
+
     return (
         <div>
             <Navbar />
@@ -27,7 +32,7 @@ const Profile = () => {
                         </div>
 
                     </div>
-                    <Button className="text-right hover:bg-blue-700 hover:text-white transition-all" title="Edit" variant="outline"><Edit className="hover:scale-110 transition" /></Button>
+                    <Button className="text-right hover:bg-blue-700 hover:text-white transition-all" title="Edit" variant="outline" onClick={() => setOpen(true)}><Edit className="hover:scale-110 transition" /></Button>
                 </div>
 
                 <div className="my-3">
@@ -54,12 +59,14 @@ const Profile = () => {
                         isResume ? <a target="_blank" className="hover:underline mr-auto text-blue-700 font-semibold" href="">Abhishek Mern Stack</a> : <span>NA</span>
                     }
                 </div>
-
             </div>
+
             <div className="max-w-4xl mx-auto bg-white rounded-2xl">
                 <h1 className="font-bold text-lg">Applied Jobs</h1>
                 <AppliedJobTable />
             </div>
+
+            <UpdateProfileBox open={open} setOpen={setOpen} />
         </div>
     )
 }

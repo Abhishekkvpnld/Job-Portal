@@ -1,3 +1,4 @@
+import Navbar from "../shared/Navbar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
@@ -7,8 +8,9 @@ const JobDescription = () => {
     let isApplied = false;
 
     return (
-        <div className="max-w-5xl my-9 mx-auto">
-            <div className="flex items-center justify-between">
+        <div className="max-w-5xl mx-auto">
+            <Navbar />
+            <div className="flex mt-10 items-center justify-between">
 
                 <div>
                     <h1 className="font-bold text-xl">Title</h1>
