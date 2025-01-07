@@ -5,6 +5,7 @@ import Home from './components/pages/Home';
 import Jobs from './components/pages/Jobs';
 import Browse from './components/pages/Browse';
 import Profile from './components/shared/Profile';
+import JobDescription from './components/pages/JobDescription';
 
 
 const App = () => {
@@ -12,35 +13,39 @@ const App = () => {
 
   const createRoutes = createBrowserRouter([
     {
-      path:"/",
-      element:<Home/>
+      path: "/",
+      element: <Home />
     },
     {
-      path:"/login",
-      element:<Login/>
+      path: "/login",
+      element: <Login />
     },
     {
-      path:"/signup",
-      element:<Signup/>
+      path: "/signup",
+      element: <Signup />
     },
     {
-      path:"/jobs",
-      element:<Jobs/>
+      path: "/jobs",
+      element: <Jobs />
     },
     {
-      path:"/browse",
-      element:<Browse/>
+      path: "/description/:id",
+      element:<JobDescription/>
     },
     {
-      path:"/profile",
-      element:<Profile/>
+      path: "/browse",
+      element: <Browse />
+    },
+    {
+      path: "/profile",
+      element: <Profile />
     }
   ])
 
 
   return (
     <>
-      <RouterProvider router={createRoutes}/>
+      <RouterProvider router={createRoutes} />
     </>
   )
 }

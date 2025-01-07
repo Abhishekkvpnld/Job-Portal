@@ -48,10 +48,10 @@ const Profile = () => {
                     }
                 </div>
 
-                <div className="grid w-full bg-slate-100 max-w-sm items-center gap-1.5 border border-dashed border-slate-400 p-3 rounded-md">
+                <div className="grid w-full bg-slate-50 max-w-sm items-center gap-1.5 border border-dashed border-slate-400 p-3 rounded-md">
                     <Label className="text-md font-bold">Resume</Label>
                     {
-                        isResume ? <a target="_blank" className="hover:underline text-blue-700 font-semibold" href="">Abhishek Mern Stack</a> : <span>NA</span>
+                        isResume ? <a target="_blank" className="hover:underline mr-auto text-blue-700 font-semibold" href="">Abhishek Mern Stack</a> : <span>NA</span>
                     }
                 </div>
 
