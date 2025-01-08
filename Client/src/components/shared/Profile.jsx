@@ -7,6 +7,7 @@ import { Label } from "../ui/label"
 import AppliedJobTable from "./AppliedJobTable"
 import { useState } from "react"
 import UpdateProfileBox from "./UpdateProfileBox"
+import { useSelector } from "react-redux"
 
 const skills = ["CSS", 'HTML', "JavaScript", 'NodeJs', "ExpresJs"];
 const isResume = true;
@@ -14,6 +15,7 @@ const isResume = true;
 const Profile = () => {
 
     const [open, setOpen] = useState(false);
+    const { user } = useSelector((store) => store.auth)
 
     return (
         <div>
@@ -27,8 +29,8 @@ const Profile = () => {
                         </Avatar>
 
                         <div>
-                            <h1 className="text-xl font-medium">Full Name</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, tempore!</p>
+                            <h1 className="text-xl font-medium">{user?.fullname}</h1>
+                            <p>{user?.profile?.bio}</p>
                         </div>
 
                     </div>
@@ -38,18 +40,18 @@ const Profile = () => {
                 <div className="my-3">
                     <div className="flex items-center gap-2 my-2">
                         <Mail />
-                        <span>abhishek@gmail.com</span>
+                        <span>{user?.email}</span>
                     </div>
                     <div className="flex items-center gap-2 my-2 ">
                         <Contact2 />
-                        <span>8684524652</span>
+                        <span>{user?.phone}</span>
                     </div>
                 </div>
 
                 <div className="my-5">
                     <h1 className="font-semibold text-md">Skills</h1>
                     {
-                        skills.length !== 0 ? skills.map((item, index) => <Badge className={"mx-1"} key={index}>{item}</Badge>) : "NA"
+                        user?.profile?.skills.length !== 0 ? user?.profile?.skills.map((item, index) => <Badge className={"mx-1"} key={index}>{item}</Badge>) : "NA"
                     }
                 </div>
 

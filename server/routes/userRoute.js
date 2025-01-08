@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/register",multerUpload,register);
 router.post("/login",login);
-router.put("/profile/update",jwtAuth,updateProfile);
+router.put("/profile/update",jwtAuth,multerUpload,updateProfile);
 router.get("/logout",logout);
 
 
