@@ -9,9 +9,6 @@ import { useState } from "react"
 import UpdateProfileBox from "./UpdateProfileBox"
 import { useSelector } from "react-redux"
 
-const skills = ["CSS", 'HTML', "JavaScript", 'NodeJs', "ExpresJs"];
-const isResume = true;
-
 const Profile = () => {
 
     const [open, setOpen] = useState(false);
@@ -58,7 +55,7 @@ const Profile = () => {
                 <div className="grid w-full bg-slate-50 max-w-sm items-center gap-1.5 border border-dashed border-slate-400 p-3 rounded-md">
                     <Label className="text-md font-bold">Resume</Label>
                     {
-                        isResume ? <a target="_blank" className="hover:underline mr-auto text-blue-700 font-semibold" href="">Abhishek Mern Stack</a> : <span>NA</span>
+                        user?.profile?.resume ? <a target="_blank" className="hover:underline mr-auto text-blue-700 font-semibold" href={user?.profile?.resume}>{user?.profile?.resumeOriginalName}</a> : <span>NA</span>
                     }
                 </div>
             </div>

@@ -2,14 +2,35 @@ import { LogOut, User2 } from "lucide-react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
+import axios from "axios";
+import { USER_API_END_POINT } from "@/utils/constants";
+import { setAuthUser } from "@/redux/authSlice";
 
 
 
 const Navbar = () => {
 
-    const { user } = useSelector(store => store.auth)
+    const { user } = useSelector(store => store.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const logoutHandler = async () => {
+        try {
+            const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true })
+            if (res.data.success) {
+                dispatch(setAuthUser(null));
+                navigate("/");
+                toast.success(res.data.message);
+            }
+
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data.message)
+        }
+    }
 
     return (
         <div className="bg-white">
@@ -33,29 +54,33 @@ const Navbar = () => {
                         </div>) : (
                             <Popover>
                                 <PopoverTrigger>
-                                    <Avatar className="w-7 h-7 rounded-full">
-                                        <AvatarImage src={"/vite.svg"} alt="avatar" />
+                                    <Avatar className="w-10 h-10 rounded-full">
+                                        <AvatarImage src={user?.profile?.profilePhoto || "/profile.png"} alt="avatar" />
                                     </Avatar>
                                 </PopoverTrigger>
 
                                 <PopoverContent className="w-72">
                                     <div className="flex items-center gap-1">
                                         <Avatar className="w-5 h-5 rounded-full">
-                                            <AvatarImage src={"/vite.svg"} alt="avatar" />
+                                            <AvatarImage src={user?.profile?.profilePhoto} alt="avatar" />
                                         </Avatar>
                                         <div>
-                                            <h1 className="text-sm font-medium">name</h1>
-                                            <p className="text-xs text-slate-500 text-muted-foreground">Lorem ipsum dolor sit amet consectetur.</p>
+                                            <h1 className="text-sm font-medium">{user?.fullname}</h1>
+                                            <p className="text-xs text-slate-500 text-muted-foreground">{user?.profile?.bio}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2 justify-between">
                                         <div className="flex items-center gap-1">
-                                            <User2 size={18} className="text-slate-600" />
-                                            <Button className="mt-2" variant="outline"><Link to={"/profile"}>View Profile</Link></Button>
+                                            {/* <User2 size={18} className="text-slate-600" /> */}
+                                            <Button className="mt-2" variant="outline"><Link to={"/profile"}>
+                                                View Profile</Link>
+                                            </Button>
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <LogOut size={18} className="text-slate-600" />
-                                            <Button className="mt-2" variant="destructive">Logout</Button>
+                                            {/* <LogOut size={18} className="text-slate-600" /> */}
+                                            <Button onClick={logoutHandler} className="mt-2" variant="destructive">
+                                                <LogOut size={18} className="text-slate-600" /> Logout
+                                            </Button>
                                         </div>
                                     </div>
                                 </PopoverContent>

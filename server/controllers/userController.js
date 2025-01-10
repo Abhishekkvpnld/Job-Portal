@@ -12,6 +12,12 @@ export const register = async (req, res) => {
       throw new Error("Provide all details...❌");
     }
 
+    const file = req.file;
+    const fileUri = getDataUri(file);
+    const cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
+      folder: "resume",
+    });
+
     const user = await User.findOne({ email });
     if (user) {
       throw new Error("User already exist with this email...❌");
@@ -25,6 +31,9 @@ export const register = async (req, res) => {
       password: hashedPassword,
       phone: phoneNumber,
       role,
+      profile: {
+        profilePhoto: cloudResponse.secure_url,
+      },
     });
 
     await newUser.save();
@@ -114,9 +123,14 @@ export const updateProfile = async (req, res) => {
     const { fullname, email, phone, bio, skills } = req.body;
     const file = req.file;
     const userId = req.id;
+    let cloudResponse = null;
 
-    const fileUri = getDataUri(file);
-    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+    if (file) {
+      const fileUri = getDataUri(file);
+      cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
+        folder: "resume",
+      });
+    }
 
     let skillsArray;
     if (skills) {
