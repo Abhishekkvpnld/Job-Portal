@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 
 
-const Job = () => {
+const Job = ({ job }) => {
 
     const navigate = useNavigate();
 
@@ -26,24 +26,24 @@ const Job = () => {
                 </Button>
 
                 <div>
-                    <h1 className="font-semibold text-xl">Company Name</h1>
+                    <h1 className="font-semibold text-xl">{job?.company?.name}</h1>
                     <p className="text-xs text-gray-500">India</p>
                 </div>
             </div>
 
             <div>
-                <h1 className="font-semibold text-lg my-2">Title</h1>
-                <p className="text-sm text-slate-500">Lorem ipsum  Dolore aspernatur repudiandae sequi magnam expedita eos debitis ut neque laudantium ipsam.</p>
+                <h1 className="font-semibold text-lg my-2">{job?.title}</h1>
+                <p className="text-sm text-slate-500">{job?.description}</p>
             </div>
 
             <div className="flex items-center gap-2 mt-2">
-                <Badge className={"font-bold text-blue-600"} variant={"ghost"}>5 Position</Badge>
-                <Badge className={"font-bold text-violet-600"} variant={"ghost"}>Part Time</Badge>
-                <Badge className={"font-bold text-red-600"} variant={"ghost"}>14LPA</Badge>
+                <Badge className={"font-bold text-blue-600"} variant={"ghost"}>{job?.position} Position</Badge>
+                <Badge className={"font-bold text-violet-600"} variant={"ghost"}>{job?.jobType}</Badge>
+                <Badge className={"font-bold text-red-600"} variant={"ghost"}>{job?.salary}LPA</Badge>
             </div>
 
             <div className="flex items-center gap-3 mt-2">
-                <Button onClick={()=>navigate(`/description/${"id"}`)} variant="outline" className="text-xs">Details</Button>
+                <Button onClick={() => navigate(`/description/${job?._id}`)} variant="outline" className="text-xs">Details</Button>
                 <Button className="bg-green-700 text-xs">Save For Later</Button>
             </div>
         </div>
