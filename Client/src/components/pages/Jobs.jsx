@@ -4,11 +4,12 @@ import Job from "../shared/Job";
 import Navbar from "../shared/Navbar";
 
 
-const jobsArr = [1, 2, 3, 4, 5, 6, 7, 8]
+// const jobsArr = [1, 2, 3, 4, 5, 6, 7, 8]
 
 const Jobs = () => {
 
-  const { allJobs } = useSelector(store => store.job);
+  const { allJobs } = useSelector(store => store.jobs);
+  console.log("✅✅✅✅✅✅✅✅✅✅,",allJobs)
 
   return (
     <div>
@@ -25,8 +26,8 @@ const Jobs = () => {
                 <div className="grid grid-cols-3 gap-4">
                   {
                     allJobs.map((job, index) => (
-                      <div key={index} job={job}>
-                        <Job />
+                      <div key={index}>
+                        <Job  job={job} />
                       </div>
                     ))
                   }

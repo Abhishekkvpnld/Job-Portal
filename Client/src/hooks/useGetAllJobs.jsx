@@ -22,7 +22,7 @@ const useGetAllJobs = () => {
 
     useEffect(() => {
         fetchAllJobs();
-    }, []),
+    }, [])
 }
 
 export default useGetAllJobs

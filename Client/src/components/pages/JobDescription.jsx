@@ -4,17 +4,22 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { setSingleJob } from "@/redux/jobSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { JOB_API_END_POINT } from "@/utils/constants";
+import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from "@/utils/constants";
+import { toast } from "sonner";
+
 
 
 const JobDescription = () => {
 
-    let isApplied = false;
 
-    const { singleJob } = useSelector(store => store.job);
+    const { singleJob } = useSelector(store => store.jobs);
     const { user } = useSelector((store) => store.auth);
+
+    let initialApplied = singleJob?.applications?.some((application) => application.applicant === user?._id) || false;
+    const [isApplied, setIsApplied] = useState(initialApplied)
+
     const dispatch = useDispatch();
     const params = useParams();
     const jobId = params.id;
@@ -27,6 +32,20 @@ const JobDescription = () => {
             }
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    const applyJobHandler = async () => {
+        try {
+            const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`, { withCredentials: true });
+            if (res?.data?.success) {
+                setIsApplied(true)
+                toast.success(res?.data?.message);
+            }
+
+        } catch (error) {
+            console.log(error)
+            toast.error(error?.response?.data?.message)
         }
     }
 
@@ -50,6 +69,7 @@ const JobDescription = () => {
                     </div>
                 </div>
                 <Button
+                    onClick={isApplied ? null : applyJobHandler}
                     disabled={isApplied}
                     className={`rounded-lg px-10 ${isApplied ? "cursor-not-allowed bg-slate-700 text-white" : "bg-blue-700 transition text-white hover:bg-blue-800"}`}
                 >

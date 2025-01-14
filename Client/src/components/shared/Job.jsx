@@ -9,11 +9,20 @@ import { useNavigate } from "react-router-dom"
 const Job = ({ job }) => {
 
     const navigate = useNavigate();
+    console.log("✅✅✅✅✅✅✅✅✅✅,",job)
+
+    const daysAgo = (time) => {
+        const createdAt = new Date(time);
+        const currentTime = new Date()
+
+        const timeDifference = createdAt - currentTime;
+        return Math.floor(timeDifference / (1000 * 24 * 60 * 60))
+    }
 
     return (
         <div className="p-5 rounded-md shadow-sm bg-white border border-gray-100 hover:shadow-md">
             <div className="flex items-center justify-between">
-                <p className="font-semibold text-xs text-gray-500">10+ days ago</p>
+                <p className="font-semibold text-xs text-gray-500">{daysAgo(job?.createdAt) === 0 ? "Today" : `${daysAgo(job?.createdAt)} days ago`}</p>
                 <Button variant="outline" className="rounded-full" size={"icon"}><Bookmark className="hover:scale-110 focus:scale-110 transition-all" /></Button>
             </div>
 
