@@ -42,9 +42,23 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-11">
                     <ul className="flex items-center text-sm gap-5 font-medium">
-                        <Link to={"/"}> <li className="hover:underline cursor-pointer">Home</li></Link>
-                        <Link to={"/jobs"}> <li className="hover:underline cursor-pointer">Jobs</li></Link>
-                        <Link to={"/browse"}><li className="hover:underline cursor-pointer">Browse</li></Link>
+
+                        {
+                            user && user.role === "recruiter" ? (
+                                <>
+                                    <Link to={"/admin/companies"}> <li className="hover:underline cursor-pointer">companies</li></Link>
+                                    <Link to={"/admin/jobs"}> <li className="hover:underline cursor-pointer">Jobs</li></Link>
+                                </>
+                            ) : (
+                                <>
+
+                                    <Link to={"/"}> <li className="hover:underline cursor-pointer">Home</li></Link>
+                                    <Link to={"/jobs"}> <li className="hover:underline cursor-pointer">Jobs</li></Link>
+                                    <Link to={"/browse"}><li className="hover:underline cursor-pointer">Browse</li></Link>
+                                </>
+                            )
+                        }
+
                     </ul>
 
                     {
@@ -70,12 +84,19 @@ const Navbar = () => {
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2 justify-between">
-                                        <div className="flex items-center gap-1">
-                                            {/* <User2 size={18} className="text-slate-600" /> */}
-                                            <Button className="mt-2" variant="outline"><Link to={"/profile"}>
-                                                View Profile</Link>
-                                            </Button>
-                                        </div>
+
+                                        {
+                                            user && user.role === "student" && (
+                                                <div className="flex items-center gap-1">
+                                                    {/* <User2 size={18} className="text-slate-600" /> */}
+                                                    <Button className="mt-2" variant="outline"><Link to={"/profile"}>
+                                                        View Profile</Link>
+                                                    </Button>
+                                                </div>
+                                            )
+                                        }
+
+
                                         <div className="flex items-center gap-2">
                                             {/* <LogOut size={18} className="text-slate-600" /> */}
                                             <Button onClick={logoutHandler} className="mt-2" variant="destructive">

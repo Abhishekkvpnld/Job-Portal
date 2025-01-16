@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom"
 const Job = ({ job }) => {
 
     const navigate = useNavigate();
-    console.log("✅✅✅✅✅✅✅✅✅✅,",job)
 
     const daysAgo = (time) => {
         const createdAt = new Date(time);

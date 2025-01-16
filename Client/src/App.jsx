@@ -6,6 +6,9 @@ import Jobs from './components/pages/Jobs';
 import Browse from './components/pages/Browse';
 import Profile from './components/shared/Profile';
 import JobDescription from './components/pages/JobDescription';
+import Companies from './components/admin/Companies';
+import CreateCompany from './components/admin/CreateCompany';
+import CompanyDetails from './components/admin/CompanyDetails';
 
 
 const App = () => {
@@ -30,7 +33,7 @@ const App = () => {
     },
     {
       path: "/description/:id",
-      element:<JobDescription/>
+      element: <JobDescription />
     },
     {
       path: "/browse",
@@ -39,7 +42,22 @@ const App = () => {
     {
       path: "/profile",
       element: <Profile />
+    },
+
+    //Admin
+    {
+      path: "/admin/companies",
+      element: <Companies />
+    },
+    {
+      path: "/admin/companies/create",
+      element: <CreateCompany/>
+    },
+    {
+      path: "/admin/companies/:id",
+      element: <CompanyDetails/>
     }
+
   ])
 
 

@@ -18,10 +18,10 @@ export const register = async (req, res) => {
       folder: "resume",
     });
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email:email }); 
     if (user) {
       throw new Error("User already exist with this email...❌");
-    }
+    };
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -56,6 +56,8 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
+
+    console.log(email,password,role)
 
     if (!email || !password) {
       throw new Error("Please Provide All Details...❌");
