@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Navbar from "../shared/Navbar";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { COMPANY_API_END_POINT } from "@/utils/constants";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
@@ -16,6 +17,8 @@ const CompanyDetails = () => {
 
     const [loading, setLoading] = useState(false);
     const params = useParams();
+    const { singleCompany } = useSelector(store => store.company)
+
     const navigate = useNavigate();
     const [input, setinput] = useState({
         name: "",
@@ -31,15 +34,15 @@ const CompanyDetails = () => {
 
 
     const fileHandler = (e) => {
-        const file = e.target.files?.[0];
-        setinput({ ...input }, file);
+        const file = e.target.files[0];
+        setinput({ ...input , file});
 
     };
 
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
+        const formData = new FormData(); 
         formData.append("name", input.name);
         formData.append("description", input.description);
         formData.append("location", input.location);
@@ -47,10 +50,8 @@ const CompanyDetails = () => {
 
         if (input.file) {
             formData.append("file", input.file)
+            console.log(input.file)
         };
-
-
-
 
         try {
             setLoading(true);
@@ -61,7 +62,7 @@ const CompanyDetails = () => {
                 withCredentials: true
             });
             if (res?.data?.success) {
-                toast.success(res?.data?.messsage);
+                toast.success(res?.data?.message);
                 navigate("/admin/companies")
             }
         } catch (error) {
@@ -70,7 +71,18 @@ const CompanyDetails = () => {
         } finally {
             setLoading(false);
         }
-    }
+    };
+
+    useEffect(() => {
+        setinput({
+            name: singleCompany.name || "",
+            location: singleCompany.location || "",
+            description: singleCompany.description || "",
+            website: singleCompany.website || "",
+            file: singleCompany.file || null
+        });
+    }, [singleCompany]);
+
 
     return (
         <div>
@@ -109,7 +121,7 @@ const CompanyDetails = () => {
 
                         <div>
                             <Label>Company Logo</Label>
-                            <Input type="file" className="border border-slate-500 mt-1" accept="image/*" name="location" onChange={fileHandler} />
+                            <Input onChange={fileHandler} type="file" className="border border-slate-500 mt-1" accept="image/*" name="location"  />
                         </div>
                     </div>
                     {
