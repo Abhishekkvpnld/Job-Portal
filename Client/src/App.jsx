@@ -9,6 +9,7 @@ import JobDescription from './components/pages/JobDescription';
 import Companies from './components/admin/Companies';
 import CreateCompany from './components/admin/CreateCompany';
 import CompanyDetails from './components/admin/CompanyDetails';
+import AdminJobs from "./components/admin/AdminJobs";
 
 
 const App = () => {
@@ -56,6 +57,10 @@ const App = () => {
     {
       path: "/admin/companies/:id",
       element: <CompanyDetails/>
+    },
+    {
+      path:"/admin/jobs",
+      element:<AdminJobs/>
     }
 
   ])

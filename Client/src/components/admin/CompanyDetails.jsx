@@ -9,6 +9,7 @@ import axios from "axios";
 import { COMPANY_API_END_POINT } from "@/utils/constants";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useGetCompanyDetails from "@/hooks/useGetCompanyDetails";
 
 
 
@@ -17,6 +18,7 @@ const CompanyDetails = () => {
 
     const [loading, setLoading] = useState(false);
     const params = useParams();
+    useGetCompanyDetails(params.id)
     const { singleCompany } = useSelector(store => store.company)
 
     const navigate = useNavigate();

@@ -3,13 +3,27 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Edit2, MoreHorizontal } from "lucide-react"
 import { useSelector } from "react-redux"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 const CompanyTable = () => {
-    const { companies } = useSelector(store => store.company);
+
+    const navigate = useNavigate();
+    const { companies, searchCompany } = useSelector(store => store.company);
     const [filter, setFilter] = useState(companies);
 
+    useEffect(() => {
+        const filterCompany = companies?.length >= 0 && companies.filter((company) => {
+            if (!searchCompany) {
+                return true;
+            }
+
+            return company?.name.toLowerCase().includes(searchCompany.toLowerCase())
+        });
+        setFilter(filterCompany)
+
+    }, [companies, searchCompany]);
 
     return (
         <div>
@@ -25,10 +39,10 @@ const CompanyTable = () => {
                 </TableHeader>
 
                 <TableBody>
-                    {companies?.length <= 0 ? (
+                    {filter?.length <= 0 ? (
                         <span>You haven't registered any company yet...</span>
                     ) : (
-                        companies?.map((company) => (
+                        filter?.map((company) => (
                             <TableRow key={company._id}>
                                 <TableCell>
                                     <Avatar>
@@ -45,9 +59,9 @@ const CompanyTable = () => {
                                         <PopoverTrigger>
                                             <MoreHorizontal />
                                         </PopoverTrigger>
-                                        <PopoverContent className="w-28">
-                                            <div className="flex items-center gap-2 cursor-pointer">
-                                                <Edit2 className="w-5 text-slate-500" />
+                                        <PopoverContent  onClick={()=>navigate(`/admin/companies/${company._id}`)}  className="w-28 hover:bg-blue-800 hover:text-white">
+                                            <div className="flex items-center gap-2 cursor-pointer h-2">
+                                                <Edit2 className="w-5 hover:text-white text-slate-500" />
                                                 <span>Edit</span>
                                             </div>
                                         </PopoverContent>
