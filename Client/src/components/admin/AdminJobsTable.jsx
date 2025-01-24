@@ -11,7 +11,6 @@ const AdminJobsTable = () => {
     const { allAdminJobs, searchJob } = useSelector(store => store.jobs);
     const [filterJobs, setFilterJobs] = useState(allAdminJobs);
 
-    console.log(allAdminJobs,"✅✅✅")
 
     useEffect(() => {
         const filterJobs = allAdminJobs?.length >= 0 && allAdminJobs.filter((job) => {
