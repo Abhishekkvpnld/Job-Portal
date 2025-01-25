@@ -4,12 +4,10 @@ import Job from "../shared/Job";
 import Navbar from "../shared/Navbar";
 
 
-// const jobsArr = [1, 2, 3, 4, 5, 6, 7, 8]
 
 const Jobs = () => {
 
   const { allJobs } = useSelector(store => store.jobs);
-  console.log("✅✅✅✅✅✅✅✅✅✅,",allJobs)
 
   return (
     <div>
