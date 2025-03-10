@@ -149,16 +149,3 @@ export const updateStatus = async (req, res) => {
     });
   }
 };
-
-// export const applyJob = async (req,res)=>{
-//     try {
-
-//     } catch (error) {
-//         console.log(error)
-//     res.status(500).json({
-//         error:true,
-//         success:false,
-//         message:error.message
-//     })
-//     }
-// }
