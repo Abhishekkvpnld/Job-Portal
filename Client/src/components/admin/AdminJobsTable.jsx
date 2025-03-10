@@ -25,7 +25,7 @@ const AdminJobsTable = () => {
     }, [allAdminJobs, searchJob]);
 
     return (
-        <div>
+        <div className="overflow-scroll">
             <Table>
                 <TableCaption>A list of your recent posted jobs</TableCaption>
                 <TableHeader>

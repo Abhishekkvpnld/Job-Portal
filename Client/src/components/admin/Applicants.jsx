@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { APPLICATION_API_END_POINT } from "@/utils/constants";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAllApplicants } from "@/redux/applicationSlice";
 
 
@@ -13,6 +13,8 @@ import { setAllApplicants } from "@/redux/applicationSlice";
 const Applicants = () => {
 
     const dispatch = useDispatch()
+const {allApplicants} = useSelector(store=>store.application);
+
     const params = useParams();
     useEffect(() => {
         const fetchApplicants = async () => {
@@ -35,7 +37,7 @@ const Applicants = () => {
         <div>
             <Navbar />
             <div className="max-w-6xl mx-auto p-3 ml-2">
-                <h1 className="mx-auto font-bold text-2xl">Applicants (3)</h1>
+                <h1 className="mx-auto font-bold text-2xl">Applicants ({allApplicants?.applications?.length})</h1>
                 <ApplicantsTable />
             </div>
         </div>
