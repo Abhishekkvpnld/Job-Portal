@@ -10,8 +10,8 @@ import { jwtAuth } from "../middlewares/auth.js";
 const router = express.Router();
 
 router.post("/post", jwtAuth, jobPost);
-router.get("/get", jwtAuth, getAllJobs);
+router.get("/get", getAllJobs);
 router.get("/getAdminJob", jwtAuth, getAdminJobs);
-router.get("/get/:id", jwtAuth, getJobById);
+router.get("/get/:id", getJobById);
 
 export default router;
