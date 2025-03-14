@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { Label } from "../ui/label";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { useDispatch } from "react-redux";
+import { setSearchQuery } from "@/redux/jobSlice";
 
 const filterData = [
     {
@@ -17,22 +20,37 @@ const filterData = [
 ]
 
 const FilterCard = () => {
+
+    const dispatch = useDispatch();
+    const [selectedValue, setSelectedValue] = useState("");
+    const changeHandler = (value) => {
+        setSelectedValue(value);
+    };
+
+    useEffect(() => {
+        dispatch(setSearchQuery(selectedValue));
+    }, [selectedValue]);
+
     return (
         <div className="rounded-md bg-white p-3 w-full hover:shadow-md">
             <h1 className="text-xl font-bold">Filter Jobs</h1>
             <hr className="mt-3" />
-            <RadioGroup>
+            <RadioGroup value={selectedValue} onValueChange={changeHandler}>
                 {
                     filterData.map((data, index) => (
                         <div key={index}>
                             <h1 className="text-lg font-bold text-gray-700">{data.filterType}</h1>
                             {
-                                data?.options.map((opt, index) => (
-                                    <div key={index} className="flex items-center my-1 space-x-2">
-                                        <RadioGroupItem value={opt}/>
-                                        <Label className="text-sm font-normal">{opt}</Label>
-                                    </div>
-                                ))
+                                data?.options.map((opt, i) => {
+
+                                    const id = `id${index}-${i}`
+                                    return (
+                                        <div key={i} className="flex items-center my-1 space-x-2">
+                                            <RadioGroupItem id={id} value={opt} />
+                                            <Label htmlFor={id} className="text-sm font-normal">{opt}</Label>
+                                        </div>
+                                    )
+                                })
                             }
                         </div>
                     ))

@@ -3,7 +3,7 @@ import { Button } from "../ui/button"
 import { Avatar, AvatarImage } from "../ui/avatar"
 import { Badge } from "../ui/badge"
 import { useNavigate } from "react-router-dom"
-
+import { motion } from "framer-motion"
 
 
 const Job = ({ job }) => {
@@ -19,7 +19,15 @@ const Job = ({ job }) => {
     }
 
     return (
-        <div className="p-5 rounded-md shadow-sm bg-white border border-gray-100 hover:shadow-md">
+        <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+            }}
+            className="p-5 rounded-md shadow-sm bg-white border border-gray-100 hover:shadow-md">
             <div className="flex items-center justify-between">
                 <p className="font-semibold text-xs text-gray-500">{daysAgo(job?.createdAt) === 0 ? "Today" : `${daysAgo(job?.createdAt)} days ago`}</p>
                 <Button variant="outline" className="rounded-full" size={"icon"}><Bookmark className="hover:scale-110 focus:scale-110 transition-all" /></Button>
@@ -54,7 +62,7 @@ const Job = ({ job }) => {
                 <Button onClick={() => navigate(`/description/${job?._id}`)} variant="outline" className="text-xs">Details</Button>
                 <Button className="bg-green-700 text-xs">Save For Later</Button>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
