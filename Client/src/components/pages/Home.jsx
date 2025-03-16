@@ -7,6 +7,7 @@ import Navbar from "../shared/Navbar"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
+import SlideIcons from "../shared/SlideIcons"
 
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
     <div>
       <Navbar />
       <HeroSection />
+      <SlideIcons/>
       <Category />
       <LatestJobs />
       <Footer />
