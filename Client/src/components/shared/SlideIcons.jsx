@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const array = [1, 2, 3, 4, 5, 6, 7];
+const array = ["icon1.png", "icon2.png", "icon11.png", "icon4.png", "icon5.png", "icon6.jpg", "icon7.png", "icon8.png", "icon9.webp", "icon10.webp", "icon3.jpeg"];
 
 const SlideIcons = () => {
   const [start, setStart] = useState(0);
@@ -11,19 +11,19 @@ const SlideIcons = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [start]);
 
   return (
     <div className="flex items-center gap-14 overflow-hidden justify-center">
       {array
-        .concat(array) 
+        .concat(array)
         .slice(start, start + 5).map((item, index) => (
-                    <img className={`${index === 3 ? "border-red-700 border-2" : ''} rounded-full border border-slate-500 w-16 h-16`} key={index} src="/vite.svg" alt="img" />
-                ))
-            }
+          <img className={`rounded-full border border-slate-500 w-12 h-12 md:w-16 md:h-16`} key={index} src={item} alt="img" />
+        ))
+      }
 
-        </div>
-    )
+    </div>
+  )
 }
 
 export default SlideIcons
