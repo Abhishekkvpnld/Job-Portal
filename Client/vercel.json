@@ -1,0 +1,19 @@
+{
+    "routes": [
+      { "src": "/", "dest": "/" },
+      { "src": "/login", "dest": "/" },
+      { "src": "/signup", "dest": "/" },
+      { "src": "/jobs", "dest": "/" },
+      { "src": "/description/:id", "dest": "/" },
+      { "src": "/browse", "dest": "/" },
+      { "src": "/profile", "dest": "/" },
+  
+      { "src": "/admin/companies", "dest": "/" },
+      { "src": "/admin/companies/create", "dest": "/" },
+      { "src": "/admin/companies/:id", "dest": "/" },
+      { "src": "/admin/jobs", "dest": "/" },
+      { "src": "/admin/jobs/create", "dest": "/" },
+      { "src": "/admin/jobs/:id/applicants", "dest": "/" }
+    ]
+  }
+    

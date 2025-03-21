@@ -20,8 +20,8 @@ const Login = () => {
     const { loading, user } = useSelector((store) => store.auth);
 
     const [input, setInput] = useState({
-        email: "",
-        password: "",
+        email: "user@gmail.com",
+        password: "User@123",
         role: "",
     });
 

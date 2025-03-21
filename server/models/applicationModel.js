@@ -23,3 +23,4 @@ const applicationSchema = new mongoose.Schema(
 
 const Application = mongoose.model("Application", applicationSchema);
 export default Application;
+ 
