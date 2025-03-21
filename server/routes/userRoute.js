@@ -1,5 +1,5 @@
 import express from "express";
-import { login, logout, register, updateProfile } from "../controllers/userCOntroller.js";
+import { login, logout, register, updateProfile } from "../controllers/userController.js";
 import { jwtAuth } from "../middlewares/auth.js";
 import { multerUpload } from "../middlewares/multer.js";
 
