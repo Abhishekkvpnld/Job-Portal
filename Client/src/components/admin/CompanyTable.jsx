@@ -59,11 +59,12 @@ const CompanyTable = () => {
                                         <PopoverTrigger>
                                             <MoreHorizontal />
                                         </PopoverTrigger>
-                                        <PopoverContent  onClick={()=>navigate(`/admin/companies/${company._id}`)}  className="w-28 hover:bg-blue-800 hover:text-white">
-                                            <div className="flex items-center gap-2 cursor-pointer h-2">
-                                                <Edit2 className="w-5 hover:text-white text-slate-500" />
-                                                <span>Edit</span>
+                                        <PopoverContent onClick={() => navigate(`/admin/companies/${company._id}`)} className="w-28 hover:bg-green-200 hover:text-white">
+                                            <div className="flex items-center gap-2 cursor-pointer px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 transition duration-300 shadow-md hover:shadow-lg text-white">
+                                                <Edit2 className="w-5" />
+                                                <span className="font-semibold">Edit</span>
                                             </div>
+
                                         </PopoverContent>
                                     </Popover>
                                 </TableCell>

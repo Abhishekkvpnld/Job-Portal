@@ -123,7 +123,7 @@ const CompanyDetails = () => {
 
                         <div>
                             <Label>Company Logo</Label>
-                            <Input onChange={fileHandler} type="file" className="border border-slate-500 mt-1" accept="image/*" name="location"  />
+                            <Input onChange={fileHandler} type="file" required className="border border-slate-500 mt-1" accept="image/*" name="location"  />
                         </div>
                     </div>
                     {

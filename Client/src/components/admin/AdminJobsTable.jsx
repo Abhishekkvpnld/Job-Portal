@@ -52,15 +52,22 @@ const AdminJobsTable = () => {
                                             <MoreHorizontal />
                                         </PopoverTrigger>
                                         <PopoverContent className="w-32 mr-6">
-                                            <div onClick={() => navigate(`/admin/companies/${job?._id}`)} className="flex items-center gap-2 cursor-pointer h-2 hover:scale-110 transform ">
-                                                <Edit2 className="w-5 hover:text-white text-slate-500" />
-                                                <span>Edit</span>
+                                            <div
+                                                onClick={() => navigate(`/admin/companies/${job?._id}`)}
+                                                className="flex items-center gap-2 cursor-pointer h-10 px-4 rounded-lg bg-slate-100 hover:bg-slate-500 hover:text-white transform transition-all duration-200 hover:scale-105 shadow-md"
+                                            >
+                                                <Edit2 className="w-5 hover:text-white text-slate-500 group-hover:text-white transition-colors duration-200" />
+                                                <span className="font-bold text-sm">Edit</span>
                                             </div>
 
-                                            <div onClick={() => navigate(`/admin/jobs/${job?._id}/applicants`)} className="flex items-center w-fit gap-2 cursor-pointer mt-4 hover:scale-105 transform">
-                                                <Eye className="w-5 hover:text-white text-slate-500" />
-                                                <span>Applicants</span>
+                                            <div
+                                                onClick={() => navigate(`/admin/jobs/${job?._id}/applicants`)}
+                                                className="flex items-center justify-center gap-2 cursor-pointer h-10 px-4 mt-4 rounded-lg bg-slate-100 hover:bg-slate-500 hover:text-white transform transition-all duration-200 hover:scale-105 shadow-md"
+                                            >
+                                                <Eye className="w-5 text-slate-500 group-hover:text-white transition-colors duration-200" />
+                                                <span className="font-bold text-sm">Applicants</span>
                                             </div>
+
                                         </PopoverContent>
                                     </Popover>
                                 </TableCell>

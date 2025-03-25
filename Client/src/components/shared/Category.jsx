@@ -3,15 +3,8 @@ import { Button } from "../ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 import { useNavigate } from "react-router-dom";
 import { setSearchQuery } from "@/redux/jobSlice";
+import {categoryList} from "../../utils/data";
 
-
-const categoryList = [
-    "Frontend Developer",
-    "Backend Developer",
-    "Graphic Designer",
-    "Data Science",
-    "Fullstack Developer"
-]
 
 const Category = () => {
 
@@ -29,7 +22,7 @@ const Category = () => {
                 <CarouselContent>
                     {
                         categoryList?.map((cat, index) => (
-                            <CarouselItem className="md:basis-1/2 lg:basis-1/3" key={index}>
+                            <CarouselItem className="md:basis-1/3 lg:basis-1/3" key={index}>
                                 <Button onClick={() => searchJobHandler(cat)} variant='outline' className="rounded-full">{cat}</Button>
                             </CarouselItem>
                         ))

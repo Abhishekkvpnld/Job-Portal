@@ -14,4 +14,5 @@ router.get("/get", jwtAuth, getAppliedJob);
 router.get("/:id/applicants", jwtAuth, getApplicants);
 router.post("/status/:id/update", jwtAuth, updateStatus);
 
-export default router;
+export default router; 
+ 
