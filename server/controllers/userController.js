@@ -18,10 +18,10 @@ export const register = async (req, res) => {
       folder: "resume",
     });
 
-    const user = await User.findOne({ email:email }); 
+    const user = await User.findOne({ email: email });
     if (user) {
       throw new Error("User already exist with this email...❌");
-    };
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -57,7 +57,7 @@ export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
 
-    console.log(email,password,role)
+    console.log(email, password, role);
 
     if (!email || !password) {
       throw new Error("Please Provide All Details...❌");
@@ -99,12 +99,13 @@ export const login = async (req, res) => {
 
     return res
       .status(200)
-      res.cookie("token", token, {
+      .res.cookie("token", token, {
         maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-      }).json({
+      })
+      .json({
         success: true,
         error: false,
         message: `Welcome back ${user.fullname}...✅`,
