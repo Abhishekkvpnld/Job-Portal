@@ -99,7 +99,7 @@ export const login = async (req, res) => {
 
     return res
       .status(200)
-      .res.cookie("token", token, {
+      .cookie("token", token, {
         maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
