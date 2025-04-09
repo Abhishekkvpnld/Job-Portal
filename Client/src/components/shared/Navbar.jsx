@@ -37,7 +37,11 @@ const Navbar = () => {
 
             <div className="flex items-center justify-between px-10 py-1">
                 <div>
-                    <Link to={"/"}><h1 className="text-2xl font-bold rounded-lg cursor-pointer  text-orange-600">Find<span className="text-black">IT</span></h1></Link>
+                    <Link to={"/"}>
+                        <h1 className="text-lg md:text-2xl font-semibold text-blue-600 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 bg-clip-text text-transparent cursor-pointer transition duration-300 hover:scale-105">
+                            Dream<span className="text-blue-600 bg-gradient-to-r from-blue-300 to-blue-600 bg-clip-text text-transparent font-bold">IT</span>
+                        </h1>
+                    </Link>
                 </div>
 
                 <div className="flex items-center gap-11">
