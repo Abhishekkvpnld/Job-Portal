@@ -25,6 +25,7 @@ const Login = () => {
         role: "",
     });
 
+
     const onChangeValueController = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
     }
@@ -56,10 +57,30 @@ const Login = () => {
 
 
     useEffect(() => {
+        if (input.role === "recruiter") {
+            setInput(prev => ({
+                ...prev,
+                email: "admin@gmail.com",
+                password: "Admin@123"
+            }));
+        }
+    
+        if (input.role === "student") {
+            setInput(prev => ({
+                ...prev,
+                email: "user@gmail.com",
+                password: "User@123"
+            }));
+        }
+    }, [input.role]);
+    
+
+
+    useEffect(() => {
         if (user) {
             navigate("/")
         }
-    }, []);
+    }, [user]);
 
     return (
         <div>
