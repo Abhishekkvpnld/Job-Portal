@@ -65,14 +65,14 @@ const Login = () => {
             }));
         }
     
-        if (input.role === "student") {
+        if (input?.role === "student") {
             setInput(prev => ({
                 ...prev,
                 email: "user@gmail.com",
                 password: "User@123"
             }));
         }
-    }, [input.role]);
+    }, [input?.role]);
     
 
 

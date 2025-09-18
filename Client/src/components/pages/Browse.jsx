@@ -25,7 +25,7 @@ const Browse = () => {
                 <h1 className="font-bold text-xl text-slate-500">Search Results:({allJobs?.length})</h1>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {
-                        allJobs.map((item) => (
+                        allJobs?.map((item) => (
                             <Job key={item?._id} job={item} />
                         ))
                     }
