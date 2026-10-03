@@ -1,85 +1,188 @@
-
-
-
+import {
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-    return (
-        <footer className="bg-gray-900 text-white py-8">
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-      
-                    <div>
-                        <h5 className="text-lg font-semibold mb-4 hover:underline">About Us</h5>
-                        <p className="text-sm text-gray-300">
-                            Your trusted job portal for connecting top talent with amazing opportunities.
-                            Join us to explore your next career move!
-                        </p>
-                    </div>
+  return (
+    <footer className="bg-slate-950 text-white">
 
-                    <div>
-                        <h5 className="text-lg font-semibold mb-4 hover:underline">Quick Links</h5>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            <li><a href="/jobs" className="hover:underline">Browse Jobs</a></li>
-                            <li><a href="/companies" className="hover:underline">Top Companies</a></li>
-                            <li><a href="/faq" className="hover:underline">FAQs</a></li>
-                            <li><a href="/contact" className="hover:underline">Contact Us</a></li>
-                        </ul>
-                    </div>
+      {/* Main */}
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
 
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
 
-                    <div>
-                        <h5 className="text-lg font-semibold mb-4 hover:underline">Resources</h5>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            <li><a href="/blog" className="hover:underline">Career Advice</a></li>
-                            <li><a href="/support" className="hover:underline">Support</a></li>
-                            <li><a href="/privacy-policy" className="hover:underline">Privacy Policy</a></li>
-                            <li><a href="/terms" className="hover:underline">Terms of Service</a></li>
-                        </ul>
-                    </div>
+          {/* Brand */}
+          <div className="lg:col-span-2">
 
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1"
+            >
+              <span className="text-2xl font-black">
+                Dream
+              </span>
 
-                    <div>
-                        <h5 className="text-lg font-semibold mb-4 hover:underline">Stay Connected</h5>
-                        <div className="flex space-x-4">
-                            <a href="#" className="text-gray-300 hover:text-white">
-                                <i className="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" className="text-gray-300 hover:text-white">
-                                <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" className="text-gray-300 hover:text-white">
-                                <i className="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="#" className="text-gray-300 hover:text-white">
-                                <i className="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                        <form className="mt-4">
-                            <label htmlFor="newsletter" className="text-sm text-gray-400">Subscribe to our Newsletter</label>
-                            <div className="mt-2 flex">
-                                <input
-                                    type="email"
-                                    id="newsletter"
-                                    className="w-full px-3 py-2 rounded-l bg-gray-800 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring focus:ring-green-500"
-                                    placeholder="Enter your email"
-                                />
-                                <button
-                                    type="submit"
-                                    className="bg-green-600 text-white px-4 py-2 rounded-r hover:bg-green-700">
-                                    Subscribe
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-2xl font-black text-transparent">
+                IT
+              </span>
+            </Link>
 
-                <div className="mt-8 border-t border-gray-700 pt-4 text-sm text-center text-gray-400">
-                    © 2025 JobPortal. All rights reserved.
-                </div>
+            <p className="mt-5 max-w-md text-sm leading-7 text-slate-400">
+              Connecting talented people with meaningful
+              opportunities. Search smarter, apply confidently
+              and build the career you want.
+            </p>
+
+            <div className="mt-6 flex gap-3">
+              <a
+                href="#"
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 transition-all hover:-translate-y-1 hover:bg-white/10"
+              >
+                <Linkedin size={17} />
+              </a>
+
+              <a
+                href="#"
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 transition-all hover:-translate-y-1 hover:bg-white/10"
+              >
+                <Github size={17} />
+              </a>
+
+              <a
+                href="#"
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 transition-all hover:-translate-y-1 hover:bg-white/10"
+              >
+                <Mail size={17} />
+              </a>
             </div>
-        </footer>
+          </div>
 
-    )
-}
+          {/* Platform */}
+          <div>
+            <h3 className="mb-5 text-sm font-semibold">
+              Platform
+            </h3>
 
-export default Footer
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li>
+                <Link
+                  to="/jobs"
+                  className="transition hover:text-white"
+                >
+                  Browse Jobs
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/browse"
+                  className="transition hover:text-white"
+                >
+                  Search Jobs
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/signup"
+                  className="transition hover:text-white"
+                >
+                  Create Account
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/login"
+                  className="transition hover:text-white"
+                >
+                  Sign In
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="mb-5 text-sm font-semibold">
+              Company
+            </h3>
+
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  About Us
+                </a>
+              </li>
+
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Contact
+                </a>
+              </li>
+
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Career Advice
+                </a>
+              </li>
+
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Support
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="mb-5 text-sm font-semibold">
+              Legal
+            </h3>
+
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Privacy Policy
+                </a>
+              </li>
+
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Terms of Service
+                </a>
+              </li>
+
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Cookie Policy
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+
+          <p>
+            © 2026 DreamIT. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-2">
+            <MapPin size={14} />
+            <span>Connecting talent everywhere</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
