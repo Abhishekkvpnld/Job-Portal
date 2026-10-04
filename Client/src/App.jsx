@@ -13,6 +13,7 @@ import AdminJobs from "./components/admin/AdminJobs";
 import PostJob from './components/admin/PostJob';
 import Applicants from './components/admin/Applicants';
 import ProtectedRoute from './components/shared/ProtectedRoute';
+import WorkInProgress from './components/pages/WorkInProgress';
 
 
 const App = () => {
@@ -72,7 +73,12 @@ const App = () => {
     {
       path: "/admin/jobs/:id/applicants",
       element: <ProtectedRoute><Applicants /></ProtectedRoute>
-    }
+    },
+    // Catch-all route
+    {
+      path: "*",
+      element: <WorkInProgress />,
+    },
 
   ])
 
